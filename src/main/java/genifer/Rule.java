@@ -5,50 +5,69 @@
  */
 package genifer;
 
-import java.util.Arrays;
-
 /**
  *
  */
 public class Rule extends Concept {
 
-    public static enum Mode {
-        NONE, AND, OR
-    }
-    
-    private final Mode mode;
-    public final Term[] pre;
+    public final Term pre;
     public final Term post;
 
-    public Rule(Term pre, Term post) {
-        this(new Term[] { pre } , post, Mode.NONE);
-    }
     
-    public Rule(Term[] pre, Term post, Mode mode) {
+    public Rule(Term pre, Term post) {
         super();
         this.pre = pre;
         this.post = post;
-        this.mode = pre.length > 1 ? mode : Mode.NONE;
     }
     
-    public int arity() { return pre.length; }
 
     @Override
     public String toString() {
-        Mode m = getMode();
-        String ms = (m == Mode.NONE) ? "" : m.toString();            
-        return ms + Arrays.toString(pre) + " => " + post;
+        return pre + " => " + post;
     }
 
-    public Mode getMode() {
-        if (arity() == 1)
-            return Mode.NONE;
-        return mode;
+    public static class Or extends Lst {
+
+        public Or(Term... components) {
+            super(components);
+            if (components.length < 2)
+                throw new RuntimeException(this + " requires >=2 subterms");
+        }
+
+        
+//        public Or(Term first, Term second, Term... additional) {
+//            super(new Term[additional.length + 2]);
+//            this.components[0] = first;
+//            this.components[1] = second;
+//            System.arraycopy(additional, 0, this.components, 2, this.components.length);
+//        }
+
+        @Override
+        public String toString() {
+            return "OR" + super.toString();
+        }
     }
+
     
-    public Rule derive(Mode m) {
-        return new Rule(pre, post, m);
+    public static class And extends Lst {
+
+        public And(Term... components) {
+            super(components);
+            if (components.length < 2)
+                throw new RuntimeException(this + " requires >=2 subterms");
+        }
+
+        @Override
+        public String toString() {
+            return "AND" + super.toString();
+        }
+        
+//        public And(Term first, Term second, Term... additional) {
+//            super(new Term[additional.length + 2]);
+//            this.components[0] = first;
+//            this.components[1] = second;
+//            System.arraycopy(additional, 0, this.components, 2, this.components.length);
+//        }
     }
-            
-    
+
 }

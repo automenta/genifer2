@@ -11,13 +11,20 @@ import java.util.Arrays;
  *
  * @author me
  */
-public class Phrase implements Term {
+public class Lst implements Term {
     
     public final Term[] components;
     transient private boolean hasVariable;
     
-    public Phrase(Term... components) {
+    public Lst(Term... components) {
         this.components = components;
+        
+        if (components.length > 1) {
+            for (int j = 0; j < this.components.length; j++) {
+                if (this.components[j] instanceof Atom)
+                    this.components[j] = ((Atom)this.components[j]).l();                
+            }
+        }
         
         this.hasVariable = false;
         for (Term t : components)

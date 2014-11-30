@@ -5,27 +5,24 @@
  */
 package genifer.mutate;
 
-import genifer.Memifer;
-import genifer.Rule;
-import genifer.Rule.Mode;
 import genifer.RuleMutation;
 
 /**
  *
  * @author me
  */
-public class ChangeRuleMode implements RuleMutation {
+abstract public class ChangeRuleMode implements RuleMutation {
 
 
-    @Override
-    public Rule apply(Memifer m, Rule r) {
-        Mode mode = r.getMode();
-        if (mode == Mode.NONE) return null;
-        
-        Rule rc = r.derive(mode == Mode.AND ? Mode.OR : Mode.AND);
-        if (m.hasRule(rc)) return null;
-        
-        return rc;
-    }
+//    @Override
+//    public Rule apply(Memifer m, Rule r) {
+//        Mode mode = r.getMode();
+//        if (mode == Mode.NONE) return null;
+//        
+//        Rule rc = r.derive(mode == Mode.AND ? Mode.OR : Mode.AND);
+//        if (m.hasRule(rc)) return null;
+//        
+//        return rc;
+//    }
     
 }

@@ -25,12 +25,8 @@ public class Atom implements Term {
         return name.equals(a.name);
     }
 
-    @Override
-    public int arity() {
-        return 0;
-    }
+ 
 
-    @Override
     public boolean hasVar() {
         return false;
     }
@@ -39,7 +35,15 @@ public class Atom implements Term {
     public String toString() {
         return name.toString();
     }
+
+    @Override
+    public int arity() {
+        return 0;
+    }
     
+    public Lst l() {
+        return new Lst(this);
+    }
     
     
     

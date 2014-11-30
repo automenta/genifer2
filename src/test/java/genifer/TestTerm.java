@@ -5,8 +5,8 @@
  */
 package genifer;
 
-import genifer.Rule.Mode;
-import genifer.mutate.ChangeRuleMode;
+import genifer.Rule.And;
+import genifer.Rule.Or;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -20,31 +20,31 @@ public class TestTerm {
         
         Memifer m = new Memifer();
         
-        Term t1 = new Atom("a");
+        Atom t1 = new Atom("a");
         assertEquals("a", t1.toString());
-        assertEquals(0, t1.arity());
         assertEquals(false, t1.hasVar());
         
-        Term t2 = new Atom("b");
+        Atom t2 = new Atom("b");
         
-        Term v1 = new Var("v", 0.5);
+        Atom v1 = new Var("v", 0.5);
         assertEquals("?v", v1.toString());
-        assertEquals(0, v1.arity());
         assertEquals(true, v1.hasVar());
         
-        Phrase p1 = new Phrase(t1, v1);
+        And pre1 = new And(t1, v1);
+        Or pre2 = new Or(t1, v1);
         
-        Phrase p2 = new Phrase(t2);
+        Lst post = new Lst(t2);
         
-        Rule r1 = new Rule(p1, p2);
+        Rule r1 = new Rule(pre1, post);
         System.out.println(r1.toString());
         
-        Rule r2 = new Rule(new Term[] { t1, v1 }, p2, Mode.AND);
+        Rule r2 = new Rule(pre2, post);
         System.out.println(r2.toString());
                 
-        Rule r3 = new ChangeRuleMode().apply(m, r2);
+        System.out.println(new Rule(new And(new Lst(t1, t2), v1), post));
+        /*Rule r3 = new ChangeRuleMode().apply(m, r2);
         assertEquals(Mode.OR, r3.getMode());
-        System.out.println(r3);
+        System.out.println(r3);*/
     }
             
 }
