@@ -11,9 +11,23 @@ package genifer;
  */
 public class Var extends Atom {
 
-    public Var(CharSequence name) {
+    final double probability;
+    
+    public Var(CharSequence name, double probability) {
         super(name);
+        this.probability = probability;
     }
+    
+    @Override
+    public boolean hasVar() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "?" + super.toString();
+    }
+    
     
     
 }

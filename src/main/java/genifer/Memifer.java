@@ -56,6 +56,11 @@ public class Memifer {
     public boolean removeRule(Rule r) {
         return rules.remove(r.post, r);
     }
+
+    public boolean hasRule(Rule rc) {
+        //TODO
+        return false;
+    }
     
     
 }

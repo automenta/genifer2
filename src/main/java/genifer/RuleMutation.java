@@ -9,9 +9,9 @@ package genifer;
  *
  * @author me
  */
-public interface Term {
-    
-    public int arity();
-    public boolean hasVar();
+abstract public interface RuleMutation {
+
+    /** returns null if not/applicable */
+    public Rule apply(Memifer m, Rule r);
     
 }

@@ -13,4 +13,7 @@ import java.io.Serializable;
  */
 public class GeniTruth implements Serializable {
     
+    double mean;
+    double variance;
+    
 }

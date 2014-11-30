@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package genifer;
+package genifer.mutate;
 
 /**
- *
- * @author me
+ * Remove a term
  */
-public interface Term {
-    
-    public int arity();
-    public boolean hasVar();
+public class RemoveTerm {
     
 }

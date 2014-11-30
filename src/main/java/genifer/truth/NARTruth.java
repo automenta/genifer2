@@ -13,10 +13,10 @@ import java.io.Serializable;
  */
 public class NARTruth implements Serializable {
     
-    private float frequency;
-    private float confidence;
+    private double frequency;
+    private double confidence;
 
-    public NARTruth(float frequency, float confidence) {
+    public NARTruth(double frequency, double confidence) {
         this.frequency = frequency;
         this.confidence = confidence;
     }

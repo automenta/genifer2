@@ -24,6 +24,24 @@ public class Atom implements Term {
         Atom a = (Atom)obj;
         return name.equals(a.name);
     }
+
+    @Override
+    public int arity() {
+        return 0;
+    }
+
+    @Override
+    public boolean hasVar() {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
+    
+    
+    
     
     
     
